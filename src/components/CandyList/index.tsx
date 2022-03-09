@@ -4,7 +4,6 @@ import { CandyListContainer } from './styled';
 import { CandyListProps } from 'types';
 
 const CandyList = (props: CandyListProps) => {
-	console.log(props);
 	return (
 		<CandyListContainer>
 			{props.listOfCandies.map((candyColor, index) => (
