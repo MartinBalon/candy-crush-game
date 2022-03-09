@@ -3,13 +3,15 @@ import CandyList from 'components/CandyList';
 
 import { createBoard } from 'utils/createBoard';
 import { checkForColumnOfThree } from 'utils/checkForColumnOfThree';
-import { Wrapper } from './styled';
+import { Wrapper, Button } from './styled';
 
 const GameBoard = () => {
 	const [gameRunning, setGameRunning] = useState(false);
 	const [currentColorArrangement, setCurrentColorArrangement] = useState<
 		string[]
 	>([]);
+	const heightOfGameBoard =
+		document.getElementById('candyListContainer')?.scrollHeight || 0;
 
 	useEffect(() => {
 		setCurrentColorArrangement(createBoard());
@@ -30,15 +32,18 @@ const GameBoard = () => {
 
 		return () => clearInterval(timer);
 	}, [gameRunning]);
-
+	console.log(heightOfGameBoard);
 	return (
 		<Wrapper>
 			{currentColorArrangement && (
 				<CandyList listOfCandies={currentColorArrangement} />
 			)}
-			<div onClick={() => setGameRunning((prevState) => !prevState)}>
+			<Button
+				onClick={() => setGameRunning((prevState) => !prevState)}
+				heightOfGameBoard={heightOfGameBoard}
+			>
 				Start Game
-			</div>
+			</Button>
 		</Wrapper>
 	);
 };
