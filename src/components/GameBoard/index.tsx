@@ -2,14 +2,19 @@ import React, { useEffect, useState } from 'react';
 import CandyList from 'components/CandyList';
 
 import { createBoard } from 'utils/createBoard';
-import { checkForColumnOfThree } from 'utils/checkForColumnOfThree';
-import { Wrapper, Button } from './styled';
+import { checkForColumn } from 'utils/checkForColumn';
+import { checkForRow } from 'utils/checkForRow';
+import { moveCandyToEmptySpace } from 'utils/moveCandyToEmptySpace';
 
-const GameBoard = () => {
+import { GameBoardProps } from 'types';
+import { StyledWrapper, StyledButton } from './styled';
+
+const GameBoard = ({ invalidRowIndex }: GameBoardProps) => {
 	const [gameRunning, setGameRunning] = useState(false);
 	const [currentColorArrangement, setCurrentColorArrangement] = useState<
 		string[]
 	>([]);
+
 	const heightOfGameBoard =
 		document.getElementById('candyListContainer')?.scrollHeight || 0;
 
@@ -25,26 +30,32 @@ const GameBoard = () => {
 				gameRunning
 			) {
 				setCurrentColorArrangement([
-					...checkForColumnOfThree(currentColorArrangement),
+					...checkForColumn(currentColorArrangement),
+				]);
+				setCurrentColorArrangement([
+					...checkForRow(currentColorArrangement, invalidRowIndex),
+				]);
+				setCurrentColorArrangement([
+					...moveCandyToEmptySpace(currentColorArrangement),
 				]);
 			}
 		}, 100);
 
 		return () => clearInterval(timer);
-	}, [gameRunning]);
-	console.log(heightOfGameBoard);
+	}, [gameRunning, currentColorArrangement]);
+
 	return (
-		<Wrapper>
+		<StyledWrapper>
 			{currentColorArrangement && (
 				<CandyList listOfCandies={currentColorArrangement} />
 			)}
-			<Button
+			<StyledButton
 				onClick={() => setGameRunning((prevState) => !prevState)}
 				heightOfGameBoard={heightOfGameBoard}
 			>
 				Start Game
-			</Button>
-		</Wrapper>
+			</StyledButton>
+		</StyledWrapper>
 	);
 };
 

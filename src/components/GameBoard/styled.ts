@@ -1,16 +1,13 @@
 import styled from 'styled-components';
+import { StyledButtonProps } from 'types';
 
-export const Wrapper = styled.div`
+export const StyledWrapper = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
 `;
 
-type ButtonProps = {
-	heightOfGameBoard: number;
-};
-
-export const Button = styled.button<ButtonProps>`
+export const StyledButton = styled.button<StyledButtonProps>`
 	background-color: red;
 	color: white;
 	border: none;

@@ -1,12 +1,12 @@
 import React from 'react';
-import { CandyWrapper } from './styled';
+import { StyledCandyWrapper } from './styled';
 import { CandyProps } from 'types';
 
 const Candy = (props: CandyProps) => {
 	return (
-		<CandyWrapper style={{ background: props.candyColor }}>
+		<StyledCandyWrapper style={{ background: props.candyColor }}>
 			{props.candyColor}
-		</CandyWrapper>
+		</StyledCandyWrapper>
 	);
 };
 

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const width = 35;
 const height = 35;
 
-export const CandyListContainer = styled.div`
+export const StyledCandyListContainer = styled.div`
 	width: ${width}rem;
 	height: ${height}rem;
 	display: flex;
