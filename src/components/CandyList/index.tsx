@@ -7,7 +7,7 @@ const CandyList = (props: CandyListProps) => {
 	return (
 		<StyledCandyListContainer id='candyListContainer'>
 			{props.listOfCandies.map((candyColor, index) => (
-				<Candy key={index} candyColor={candyColor} />
+				<Candy key={index} index={index} candyColor={candyColor} />
 			))}
 		</StyledCandyListContainer>
 	);

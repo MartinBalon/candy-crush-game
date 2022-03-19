@@ -5,6 +5,6 @@ import Candy from 'components/Candy';
 afterEach(cleanup);
 
 it('should render correctly', () => {
-	const renderer = render(<Candy candyColor='red'></Candy>);
+	const renderer = render(<Candy candyColor='red' index={1}></Candy>);
 	expect(renderer).toMatchSnapshot();
 });

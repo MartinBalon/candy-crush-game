@@ -1,5 +1,6 @@
 export type CandyProps = {
 	candyColor: string;
+	index: number;
 };
 
 export type CandyListProps = {

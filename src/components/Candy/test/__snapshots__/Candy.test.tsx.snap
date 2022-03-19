@@ -5,21 +5,21 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
-        class="sc-bdvvtL dfDYcO"
-        style="background: red;"
-      >
-        red
-      </div>
+      <img
+        alt="red"
+        data-id="1"
+        draggable="true"
+        style="background: red; width: 4.375rem; height: 4.375rem;"
+      />
     </div>
   </body>,
   "container": <div>
-    <div
-      class="sc-bdvvtL dfDYcO"
-      style="background: red;"
-    >
-      red
-    </div>
+    <img
+      alt="red"
+      data-id="1"
+      draggable="true"
+      style="background: red; width: 4.375rem; height: 4.375rem;"
+    />
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
