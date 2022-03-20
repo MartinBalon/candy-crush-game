@@ -1,8 +1,11 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { onCandyBeingDragged, onCandyBeingReplaced } from 'store';
+import {
+	onCandyBeingDragged,
+	onCandyBeingReplaced,
+	onCandyBeingDropped,
+} from 'store';
 
-import { onDragEnd } from 'utils/dragCandy';
 import { CandyProps } from 'types';
 
 const Candy = ({ candyColor, index }: CandyProps) => {
@@ -19,7 +22,7 @@ const Candy = ({ candyColor, index }: CandyProps) => {
 			onDragEnter={(event) => event.preventDefault()}
 			onDragLeave={(event) => event.preventDefault()}
 			onDrop={() => dispatch(onCandyBeingReplaced(index))}
-			onDragEnd={onDragEnd}
+			onDragEnd={() => dispatch(onCandyBeingDropped(true))}
 		/>
 	);
 };
