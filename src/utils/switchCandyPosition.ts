@@ -7,12 +7,15 @@ export const switchCandyPosition = (
 	candyBeingReplacedId: number,
 	colorArrangement: string[]
 ) => {
-	const validMoves = [
-		candyBeingDraggedId - 1,
-		candyBeingDraggedId - width,
-		candyBeingDraggedId + 1,
-		candyBeingDraggedId + width,
-	];
+	const validMoves = [candyBeingDraggedId - width, candyBeingDraggedId + width];
+
+	if (candyBeingDraggedId % width !== 0) {
+		validMoves.push(candyBeingDraggedId - 1);
+	}
+
+	if ((candyBeingDraggedId + 1) % width !== 0) {
+		validMoves.push(candyBeingDraggedId + 1);
+	}
 
 	const updatedColorArrangement = [...colorArrangement];
 	const candyBeingDragged = updatedColorArrangement[candyBeingDraggedId];

@@ -1,29 +1,46 @@
-import React from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
 	onCandyBeingDragged,
 	onCandyBeingReplaced,
 	onCandyBeingDropped,
 } from 'store';
-
 import { CandyProps } from 'types';
 
 const Candy = ({ candyColor, index }: CandyProps) => {
 	const dispatch = useDispatch();
+	const [image, setImage] = useState<any>(null);
+
+	useEffect(() => {
+		if (candyColor) {
+			import(`./img/${candyColor}Candy.jpg`).then((image) =>
+				setImage(image.default)
+			);
+		}
+	}, [candyColor]);
 
 	return (
-		<img
-			style={{ background: candyColor, width: '4.375rem', height: '4.375rem' }}
-			data-id={index}
-			alt={candyColor}
-			draggable={true}
-			onDragStart={() => dispatch(onCandyBeingDragged(index))}
-			onDragOver={(event) => event.preventDefault()}
-			onDragEnter={(event) => event.preventDefault()}
-			onDragLeave={(event) => event.preventDefault()}
-			onDrop={() => dispatch(onCandyBeingReplaced(index))}
-			onDragEnd={() => dispatch(onCandyBeingDropped(true))}
-		/>
+		<>
+			{image && (
+				<img
+					src={image}
+					style={{
+						background: candyColor,
+						width: '4.375rem',
+						height: '4.375rem',
+					}}
+					data-id={index}
+					alt={candyColor}
+					draggable={true}
+					onDragStart={() => dispatch(onCandyBeingDragged(index))}
+					onDragOver={(event) => event.preventDefault()}
+					onDragEnter={(event) => event.preventDefault()}
+					onDragLeave={(event) => event.preventDefault()}
+					onDrop={() => dispatch(onCandyBeingReplaced(index))}
+					onDragEnd={() => dispatch(onCandyBeingDropped(true))}
+				/>
+			)}
+		</>
 	);
 };
 

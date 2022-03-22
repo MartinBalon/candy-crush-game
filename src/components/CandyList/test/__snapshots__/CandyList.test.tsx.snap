@@ -8,52 +8,14 @@ Object {
       <div
         class="sc-bdvvtL fjEUDr"
         id="candyListContainer"
-      >
-        <img
-          alt="red"
-          data-id="0"
-          draggable="true"
-          style="background: red; width: 4.375rem; height: 4.375rem;"
-        />
-        <img
-          alt="green"
-          data-id="1"
-          draggable="true"
-          style="background: green; width: 4.375rem; height: 4.375rem;"
-        />
-        <img
-          alt="blue"
-          data-id="2"
-          draggable="true"
-          style="background: blue; width: 4.375rem; height: 4.375rem;"
-        />
-      </div>
+      />
     </div>
   </body>,
   "container": <div>
     <div
       class="sc-bdvvtL fjEUDr"
       id="candyListContainer"
-    >
-      <img
-        alt="red"
-        data-id="0"
-        draggable="true"
-        style="background: red; width: 4.375rem; height: 4.375rem;"
-      />
-      <img
-        alt="green"
-        data-id="1"
-        draggable="true"
-        style="background: green; width: 4.375rem; height: 4.375rem;"
-      />
-      <img
-        alt="blue"
-        data-id="2"
-        draggable="true"
-        style="background: blue; width: 4.375rem; height: 4.375rem;"
-      />
-    </div>
+    />
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

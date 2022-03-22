@@ -23,6 +23,16 @@ export const checkForRow = (
 			currentColorArrangement[fourthInRow],
 		];
 
+		// check if row of three
+		if (invalidIndex.invalidRowOfThreeIndexes.includes(i)) {
+			continue;
+		}
+		if (rowColors[0] === rowColors[1] && rowColors[1] === rowColors[2]) {
+			for (let i = 0; i <= 2; i++) {
+				updatedCurrentColorArrangement[rowIndexes[i]] = '';
+			}
+		}
+
 		// check if row of four
 		if (invalidIndex.invalidRowOfFourthIndexes.includes(i)) {
 			continue;
@@ -33,16 +43,6 @@ export const checkForRow = (
 			rowColors[2] === rowColors[3]
 		) {
 			for (let i = 0; i <= 3; i++) {
-				updatedCurrentColorArrangement[rowIndexes[i]] = '';
-			}
-		}
-
-		// check if row of three
-		if (invalidIndex.invalidRowOfThreeIndexes.includes(i)) {
-			continue;
-		}
-		if (rowColors[0] === rowColors[1] && rowColors[1] === rowColors[2]) {
-			for (let i = 0; i <= 2; i++) {
 				updatedCurrentColorArrangement[rowIndexes[i]] = '';
 			}
 		}

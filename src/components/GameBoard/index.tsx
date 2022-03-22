@@ -15,7 +15,7 @@ import { switchCandyPosition } from 'utils/switchCandyPosition';
 
 const GameBoard = ({ invalidRowIndex }: GameBoardProps) => {
 	const dispatch = useDispatch();
-	const [gameRunning, setGameRunning] = useState(false);
+	const [gameIsRunning, setGameIsRunning] = useState(false);
 	const [currentColorArrangement, setCurrentColorArrangement] = useState<
 		string[]
 	>([]);
@@ -33,7 +33,7 @@ const GameBoard = ({ invalidRowIndex }: GameBoardProps) => {
 
 	useEffect(() => {
 		// react to a player moving a candy
-		if (candyBeingDropped) {
+		if (candyBeingDropped && gameIsRunning) {
 			setCurrentColorArrangement([
 				...switchCandyPosition(
 					candyBeingDraggedId,
@@ -43,14 +43,14 @@ const GameBoard = ({ invalidRowIndex }: GameBoardProps) => {
 			]);
 			dispatch(onCandyBeingDropped(false));
 		}
-	}, [candiesBeingReplaced]);
+	}, [candiesBeingReplaced, gameIsRunning]);
 
 	useEffect(() => {
 		const timer = setInterval(() => {
 			if (
 				currentColorArrangement &&
 				currentColorArrangement.length > 0 &&
-				gameRunning
+				gameIsRunning
 			) {
 				setCurrentColorArrangement([
 					...checkForColumn(currentColorArrangement),
@@ -65,7 +65,7 @@ const GameBoard = ({ invalidRowIndex }: GameBoardProps) => {
 		}, 100);
 
 		return () => clearInterval(timer);
-	}, [gameRunning, currentColorArrangement]);
+	}, [gameIsRunning, currentColorArrangement]);
 
 	return (
 		<StyledWrapper>
@@ -73,7 +73,7 @@ const GameBoard = ({ invalidRowIndex }: GameBoardProps) => {
 				<CandyList listOfCandies={currentColorArrangement} />
 			)}
 			<StyledButton
-				onClick={() => setGameRunning((prevState) => !prevState)}
+				onClick={() => setGameIsRunning((prevState) => !prevState)}
 				heightOfGameBoard={heightOfGameBoard}
 			>
 				Start Game
