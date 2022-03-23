@@ -1,15 +1,15 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
 	onCandyBeingDragged,
 	onCandyBeingReplaced,
 	onCandyBeingDropped,
-} from 'store';
+} from 'store/candySlice';
 import { CandyProps } from 'types';
 
 const Candy = ({ candyColor, index }: CandyProps) => {
 	const dispatch = useDispatch();
-	const [image, setImage] = useState<any>(null);
+	const [image, setImage] = useState<string | null>(null);
 
 	useEffect(() => {
 		if (candyColor) {

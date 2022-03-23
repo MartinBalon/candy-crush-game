@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState, onCandyBeingDropped } from 'store';
+import { RootState } from 'store';
+import { onCandyBeingDropped } from 'store/candySlice';
 
 import CandyList from 'components/CandyList';
 
@@ -12,13 +13,17 @@ import { moveCandyToEmptySpace } from 'utils/moveCandyToEmptySpace';
 import { GameBoardProps } from 'types';
 import { StyledWrapper, StyledButton } from './styled';
 import { switchCandyPosition } from 'utils/switchCandyPosition';
+import PointsCounter from 'components/PointsCounter';
 
 const GameBoard = ({ invalidRowIndex }: GameBoardProps) => {
 	const dispatch = useDispatch();
 	const [gameIsRunning, setGameIsRunning] = useState(false);
+	const [points, setPoints] = useState(0);
 	const [currentColorArrangement, setCurrentColorArrangement] = useState<
 		string[]
 	>([]);
+
+	const { score } = useSelector((state: RootState) => state.score);
 	const candiesBeingReplaced = useSelector((state: RootState) => state.candy);
 	const { candyBeingDraggedId } = candiesBeingReplaced;
 	const { candyBeingReplacedId } = candiesBeingReplaced;
@@ -30,6 +35,10 @@ const GameBoard = ({ invalidRowIndex }: GameBoardProps) => {
 	useEffect(() => {
 		setCurrentColorArrangement(createBoard());
 	}, []);
+
+	useEffect(() => {
+		setPoints(score);
+	}, [score]);
 
 	useEffect(() => {
 		// react to a player moving a candy
@@ -69,15 +78,18 @@ const GameBoard = ({ invalidRowIndex }: GameBoardProps) => {
 
 	return (
 		<StyledWrapper>
+			<PointsCounter points={points} heightOfGameBoard={heightOfGameBoard} />
 			{currentColorArrangement && (
 				<CandyList listOfCandies={currentColorArrangement} />
 			)}
-			<StyledButton
-				onClick={() => setGameIsRunning((prevState) => !prevState)}
-				heightOfGameBoard={heightOfGameBoard}
-			>
-				Start Game
-			</StyledButton>
+			{!gameIsRunning && (
+				<StyledButton
+					onClick={() => setGameIsRunning((prevState) => !prevState)}
+					heightOfGameBoard={heightOfGameBoard}
+				>
+					Start Game
+				</StyledButton>
+			)}
 		</StyledWrapper>
 	);
 };

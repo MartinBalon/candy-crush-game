@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { StyledButtonProps } from 'types';
+import { theme } from 'themes';
 
 export const StyledWrapper = styled.div`
 	display: flex;
@@ -9,9 +10,10 @@ export const StyledWrapper = styled.div`
 
 export const StyledButton = styled.button<StyledButtonProps>`
 	background-color: red;
-	color: white;
+	color: ${theme.secondaryFontColor};
 	border: none;
-	border-radius: 5px;
+	border-radius: ${theme.borderRadius};
+	box-shadow: ${theme.boxshadow};
 	font-weight: bold;
 	padding: 0.6rem 3rem;
 	font-size: 1.2rem;

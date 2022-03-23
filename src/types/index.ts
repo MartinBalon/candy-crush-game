@@ -11,6 +11,10 @@ export type StyledButtonProps = {
 	heightOfGameBoard: number;
 };
 
+export type StyledWrapperProps = {
+	heightOfGameBoard: number;
+};
+
 export type invalidIndexesType = {
 	invalidRowOfThreeIndexes: number[];
 	invalidRowOfFourthIndexes: number[];
@@ -18,4 +22,19 @@ export type invalidIndexesType = {
 
 export type GameBoardProps = {
 	invalidRowIndex: invalidIndexesType;
+};
+
+export type PointsCounterProps = {
+	points: number;
+	heightOfGameBoard: number;
+};
+
+export type ScoreSliceType = {
+	score: number;
+};
+
+export type CandySliceType = {
+	candyBeingDraggedId: number;
+	candyBeingReplacedId: number;
+	candyBeingDropped: boolean;
 };

@@ -1,5 +1,8 @@
 import { gameOptions } from './gameOptions';
 import { invalidIndexesType } from 'types';
+import store from 'store';
+import scoreSlice from 'store/counterSlice';
+import { POINTS_FOR_FOUR, POINTS_FOR_THREE } from 'const';
 
 export const checkForRow = (
 	currentColorArrangement: string[],
@@ -31,6 +34,7 @@ export const checkForRow = (
 			for (let i = 0; i <= 2; i++) {
 				updatedCurrentColorArrangement[rowIndexes[i]] = '';
 			}
+			store.dispatch(scoreSlice.actions.incrementScore(POINTS_FOR_THREE));
 		}
 
 		// check if row of four
@@ -45,6 +49,7 @@ export const checkForRow = (
 			for (let i = 0; i <= 3; i++) {
 				updatedCurrentColorArrangement[rowIndexes[i]] = '';
 			}
+			store.dispatch(scoreSlice.actions.incrementScore(POINTS_FOR_FOUR));
 		}
 	}
 
